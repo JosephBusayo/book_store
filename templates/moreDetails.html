@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+ <head>
+  <meta charset="utf-8">
+  <title>more-details</title>
+ </head>
+
+ <body>
+  {% block content%}
+
+  <ul >
+   <!-- Links to navigate between pages -->
+   <!-- At this point user is already logged in so some details from the homepage is removed-->
+     <a href="{% url 'index' %}">Home</a>
+     <a href="{% url 'logout_req' %}">Logout</a>
+  </ul>
+
+  <table style="width:50%">
+    <tr>
+      <th>BOOK TITLE</th>
+      <th>AUTHOR</th>
+      <th>ISBN</th>
+      <th>CO-AUTHOR</th>
+      <th>RELEASE</th>
+    </tr>
+
+    <tr>
+      <td>{{books.book_name}}</td>
+      <td>{{books.author}}</td>
+      <td>{{books.isbn}}</td>
+      <td>{{books.co_author}}</td>
+      <td>{{books.release}}</td>
+      <!--creating a button inside a link-->
+      <!--buttoms are active if user is already logged in-->
+      <td> <a href="{% url 'index' %}"> <button type="button">Less</button> </a> </td>
+    </tr>
+  </table>
+
+  {% endblock %}
+ </body>
+
+</html>

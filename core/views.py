@@ -9,6 +9,11 @@ def index(request):
     return render(request, "index.html", {'books':books})
 
 
+def more_detail(request, pk):
+    books = book.objects.get(id=pk)
+    return render(request, "moreDetails.html", {'books':books})
+
+
 def add_book(request):
     #This view is meeting two ends depending on the request method
     if request.method == 'POST':

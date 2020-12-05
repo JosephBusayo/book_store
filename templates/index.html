@@ -10,8 +10,8 @@
  <body>
   {% block content%}
 
-  <!-- Links to navigate between pages -->
   <ul >
+   <!-- Links to navigate between pages -->
    <!-- user only see this content if they are logged in-->
    {% if user.is_authenticated %}
      <a href="{% url 'index' %}">Home</a>
@@ -22,6 +22,7 @@
      <a href="{% url 'register' %}">Register</a>
    {% endif %}
   </ul>
+
   {% if user.is_authenticated %}
   <td> <a href="add_book"> <button type="button">Add a book+</button> </a> </td>
   {% else %}
@@ -36,20 +37,25 @@
     </tr>
 
     {% for book in books %}
+
     {% if user.is_authenticated %}
     <tr>
       <td>{{book.book_name}}</td>
       <td>{{book.author}}</td>
       <td>{{book.isbn}}</td>
       <!--creating a button inside a link-->
+      <!--buttoms are active if user is already logged in-->
+      <td> <a href="{% url 'more_detail' book.id %}"> <button type="button">More</button> </a> </td>
       <td> <a href="{% url 'update_book' book.id %}"> <button type="button">Update</button> </a> </td>
       <td> <a href="{% url 'delete_book' book.id %}"> <button type="button">Delete</button> </a> </td>
     </tr>
     {% else %}
     <tr>
+     <!--books are shown but buttoms are disabled if user is not logged in-->
       <td>{{book.book_name}}</td>
       <td>{{book.author}}</td>
       <td>{{book.isbn}}</td>
+      <td><button disabled>More</button></td>
       <td><button disabled>Update</button></td>
       <td><button disabled>Delete</button></td>
     </tr>

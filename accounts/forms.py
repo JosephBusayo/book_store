@@ -15,14 +15,6 @@ class RegisterForm(forms.Form):
     password= forms.CharField(label="Password", max_length=200)
     confirm_password = forms.CharField(label="Confirm Password", max_length=200)
 
-    #def clean(self):
-    #    cleaned_data = super(RegisterForm, self).clean()
-    #    password = cleaned_data.get("password")
-    #    confirm_password = cleaned_data.get("confirm_password")
-
-    #    if password != confirm_password:
-    #        raise forms.ValidationError("wrong something")
-
 
 class LoginForm(forms.Form):
     username = forms.CharField(label="Userame", max_length=200)

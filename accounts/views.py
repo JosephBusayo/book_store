@@ -4,7 +4,7 @@ from django.contrib.auth.models import User, auth
 from django.contrib import messages
 
 
-
+#NOTE user authentication not yet completed...password not checked
 def register(request):
     if request.method == "POST":
         reg_form = RegisterForm(request.POST)
@@ -17,13 +17,9 @@ def register(request):
             pswd = reg_form.cleaned_data["password"]
             pswd2 = reg_form.cleaned_data["confirm_password"]
 
-            if pswd != pswd2:
-                print("Yes")
-                #raise forms.ValidationError("wrong something")
-            else:
-                user = User.objects.create_user(username=u_name, password=pswd, email=mail, first_name=f_name, last_name=l_name)
-                user.save()
-                return redirect("/")
+            user = User.objects.create_user(username=u_name, password=pswd, email=mail, first_name=f_name, last_name=l_name)
+            user.save()
+            return redirect("/")
 
     reg_form = RegisterForm()
     return render(request, 'register.html', {'reg_form':reg_form})
