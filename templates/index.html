@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+ <head>
+  <meta charset="utf-8">
+  <title>index</title>
+ </head>
+
+ <body>
+  {% block content%}
+
+  <!-- Links to navigate between pages -->
+  <ul >
+   <!-- user only see this content if they are logged in-->
+   {% if user.is_authenticated %}
+     <a href="{% url 'index' %}">Home</a>
+     <a href="{% url 'logout_req' %}">Logout</a>
+   {% else %}
+     <a href="{% url 'index' %}">Home</a>
+     <a href="{% url 'login' %}">Login</a>
+     <a href="{% url 'register' %}">Register</a>
+   {% endif %}
+  </ul>
+  {% if user.is_authenticated %}
+  <td> <a href="add_book"> <button type="button">Add a book+</button> </a> </td>
+  {% else %}
+  <button disabled>Add a book+</button>
+  {% endif %}
+
+  <table style="width:50%">
+    <tr>
+      <th>BOOK TITLE</th>
+      <th>AUTHOR</th>
+      <th>ISBN</th>
+    </tr>
+
+    {% for book in books %}
+    {% if user.is_authenticated %}
+    <tr>
+      <td>{{book.book_name}}</td>
+      <td>{{book.author}}</td>
+      <td>{{book.isbn}}</td>
+      <!--creating a button inside a link-->
+      <td> <a href="{% url 'update_book' book.id %}"> <button type="button">Update</button> </a> </td>
+      <td> <a href="{% url 'delete_book' book.id %}"> <button type="button">Delete</button> </a> </td>
+    </tr>
+    {% else %}
+    <tr>
+      <td>{{book.book_name}}</td>
+      <td>{{book.author}}</td>
+      <td>{{book.isbn}}</td>
+      <td><button disabled>Update</button></td>
+      <td><button disabled>Delete</button></td>
+    </tr>
+    {% endif %}
+
+    {% endfor %}
+
+  </table>
+
+  {% endblock %}
+ </body>
+
+</html>
