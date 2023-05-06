@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>Index</title>
+    </head>
+
+ <body>
+  {% block content%}
+    <section class="body-wrapper">
+
+      <ul class="navbar">
+        <!-- Links to navigate between pages -->
+        {% if user.is_authenticated %} <!-- user only see this content if they are logged in-->
+          <li class="nav-bar"><a href="{% url 'index' %}">Home</a></li>
+          <li class="nav-bar"><a href="{% url 'logout_req' %}">Logout</a></li>
+        {% else %}
+          <li class="nav-bar"><a href="{% url 'index' %}">Home</a></li>
+          <li class="nav-bar"><a href="{% url 'login' %}">Login</a></li>
+          <li class="nav-bar"><a href="{% url 'register' %}">Register</a></li>
+        {% endif %}
+      </ul>
+
+
+      <main>
+        <section class="add-book">
+          {% if user.is_authenticated %}
+          <a href="add_book"> <button class="add-book-btn" type="button">Add a book+</button> </a> 
+          {% else %}
+            <button class="add-book-btn" disabled>Add a book+</button>
+          {% endif %}
+        </section>
+        
+
+        <section class="books-outer-section">
+          {% for book in books %} 
+          {% if user.is_authenticated %}
+            <section class="if-section">
+
+                  <!--<div>
+                    {{book.img}}
+                  </div>-->
+
+                  <div class="book-info">
+                    <p>Title: {{book.title}}</p>
+                    <p>Author: {{book.authors}}</p>
+                    <p>ISBN: {{book.isbn}}</p>
+                  </div>
+
+                 <div>
+                    <a href="{% url 'more_detail' book.id %}"> <button type="button" id="more-btn">More</button> </a> 
+                    <a href="{% url 'update_book' book.id %}"> <button type="button" id="update-btn">Update</button> </a>
+                    <a href="{% url 'delete_book' book.id %}"> <button type="button" id="delete-btn">Delete</button> </a>
+                  </div>
+            </section>
+
+            {% else %}
+            <section class="else-section">
+                      <div>
+                        <img src="{{book.imageLinks.thumbnail}}">
+                      </div>
+                    <div>
+                      <h3>{{book.title}}</h3>
+                      {% for author in book.authors %} <!--book.authors a list-->
+                      {{ author }}</p>
+                      {% endfor %}
+                      <p>ISBN: {{book.isbn}}</p>
+                   
+                      <button disabled id="more-btn">More</button>
+                      <button disabled id="update-btn">Update</button>
+                      <button disabled id="delete-btn">Delete</button>
+                    </div>
+            </section>
+          {% endif %}
+          {% endfor %}
+
+        </section >
+
+      </main>
+
+    </section>
+  {% endblock %}
+ </body>
+
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+ <head>
+  <meta charset="utf-8">
+  <title>add_book</title>
+ </head>
+
+
+ <body>
+
+  <form method="POST"> <!--action is not specified here because this form is used for both add and update-->
+   {% csrf_token %}
+
+   {{my_form.as_p}} <!-- as_p arranges the form in order-->
+   <button type="submit">Add</button>
+
+  </form>
+
+ </body>
+</html>

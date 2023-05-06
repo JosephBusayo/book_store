@@ -1,0 +1,9 @@
+
+<h3>REGISTRATION PAGE!</h3>
+<form action="register" method="POST">
+ {% csrf_token %}
+
+ {{reg_form.as_p}}<!-- as_p arranges the form in order-->
+ <p><button type="submit">Submit</button></p>
+
+ 

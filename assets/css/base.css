@@ -1,0 +1,98 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background-color: white;
+    text-align: center;  /* Can horizontally align without justify-content and align-item*/
+
+}
+
+.body-wrapper{
+    width: 65%;
+    font-size: 20px;
+
+    background-color: skyblue;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6);
+}
+
+
+/* NAVIGATION BAR*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #111;
+  }
+  
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #333;
+}
+
+
+
+button{
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.add-book-btn{
+    background-color: green;
+    color: white;
+}
+
+
+.books-outer-section{
+    margin: 10px;
+    padding: 10px;
+    width: 90%;
+    font-size: 20px;/*Images adjust to screen size in proper arrangement*/
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+
+    flex-wrap: wrap;
+}
+
+.if-section, .else-section{
+    border: 4px solid black;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 20px;/*Images adjust to screen size in proper arrangement*/
+
+    margin: 10px;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6);
+
+    background-color: rgba(249, 180, 45, .8);
+}
+
+#more-btn {
+    background-color: rgba(10, 10, 250, .9);
+    color: white;
+}
+
+#delete-btn {
+    background-color:  red;
+    color: white;
+}
+
+#update-btn {
+    background-color:  rgba(50, 238, 69, 0.5);
+    color: white;
+}
